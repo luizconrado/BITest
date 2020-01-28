@@ -1,9 +1,9 @@
-package com.example.restapi.bitest.view;
+package com.example.restapi.bitest.controller;
 
-import com.example.restapi.bitest.controller.MerchantAddress;
-import com.example.restapi.bitest.controller.MerchantContract;
-import com.example.restapi.bitest.model.MerchantAddressRepository;
-import com.example.restapi.bitest.model.MerchantContractRepository;
+import com.example.restapi.bitest.model.MerchantAddress;
+import com.example.restapi.bitest.model.MerchantContract;
+import com.example.restapi.bitest.repository.MerchantAddressRepository;
+import com.example.restapi.bitest.repository.MerchantContractRepository;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.springframework.http.HttpHeaders;

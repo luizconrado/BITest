@@ -130,3 +130,6 @@ buildNumber.properties
 .mvn/timing.properties
 .mvn/wrapper/maven-wrapper.jar
 
+#src/main/java/com/example/restapi/bitest/repository/
+#src/main/resources/static/
+#src/main/resources/templates/

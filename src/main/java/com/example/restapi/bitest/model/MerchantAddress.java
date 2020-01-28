@@ -1,4 +1,4 @@
-package com.example.restapi.bitest.controller;
+package com.example.restapi.bitest.model;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
