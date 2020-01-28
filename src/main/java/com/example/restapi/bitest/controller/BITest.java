@@ -27,10 +27,10 @@ public class BITest {
 //        merchantAddressRepository.findAll().forEach(System.out::println);
     }
 
-    @RequestMapping(method = RequestMethod.GET, path = "/hello")
-    public String hello() {
-        return "Hello";
-    }
+//    @RequestMapping(method = RequestMethod.GET, path = "/hello")
+//    public String hello() {
+//        return "Hello";
+//    }
 
 
     @RequestMapping(method = RequestMethod.GET, path = "/merchantaddress", produces = "application/json")
@@ -41,12 +41,12 @@ public class BITest {
             token = headers.get("token").get(0);
 
             if (!token.equals("snEj3vGHD7Qa4PKvN6dkBz9fZYjrDqaa!@!")) {
-                return new ResponseEntity<String>("{\"error\":\"Bad Token.\"}", HttpStatus.FORBIDDEN);
+                return new ResponseEntity<String>("{\"error\":\"Bad Token.\"}", HttpStatus.UNAUTHORIZED);
             }
 
-
         } catch (NullPointerException e) {
-            throw new ResponseStatusException(HttpStatus.FORBIDDEN, "{\"error\":\"token not found.\"}");
+            throw new ResponseStatusException(HttpStatus.UNAUTHORIZED, "{\"error\":\"token not found.\"}");
+//            return new ResponseEntity<String>("{\"error\":\"Token not found.\"}", HttpStatus.UNAUTHORIZED);
         }
 
         Iterable<MerchantAddress> all = merchantAddressRepository.findAll();
@@ -71,12 +71,12 @@ public class BITest {
             token = headers.get("token").get(0);
 
             if (!token.equals("snEj3vGHD7Qa4PKvN6dkBz9fZYjrDqaa!@!")) {
-                return new ResponseEntity<String>("{\"error\":\"Bad Token.\"}", HttpStatus.FORBIDDEN);
+                return new ResponseEntity<String>("{\"error\":\"Bad Token.\"}", HttpStatus.UNAUTHORIZED);
             }
 
         } catch (NullPointerException e) {
 //            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "{\"error\":\"token not found.\"}");
-            return new ResponseEntity<String>("{\"error\":\"Token not found.\"}", HttpStatus.FORBIDDEN);
+            return new ResponseEntity<String>("{\"error\":\"Token not found.\"}", HttpStatus.INTERNAL_SERVER_ERROR);
         }
 
         Iterable<MerchantContract> all = merchantContractRepository.findAll();
@@ -95,17 +95,23 @@ public class BITest {
 
     @RequestMapping(method = RequestMethod.POST, path = "/token", produces = "application/json")
     public ResponseEntity<String> getCredentials(@RequestHeader HttpHeaders headers) {
-        String username;
-        String password;
+        String username = null;
+        String password = null;
         try {
             username = headers.get("username").get(0);
             password = headers.get("password").get(0);
 
+            if ((!username.equals("bitest@finleap.com") || username == null) || (!password.equals("AkljdasHJSDkj86572Fga") || password == null)) {
+                System.out.println(headers.entrySet());
+                return new ResponseEntity<String>("{\"token\":\"snEj3vGHD7Qa4PKvN6dkBz9fZYjrDqaa!@!\"}", HttpStatus.OK);
+            } else {
+                return new ResponseEntity<String>("{\"error\":\"wrong username or password.\"}", HttpStatus.UNAUTHORIZED);
+            }
+
         } catch (NullPointerException e) {
-            return new ResponseEntity<String>("{\"error\":\"username or password not found.\"}", HttpStatus.OK);
+            return new ResponseEntity<String>("{\"error\":\"username or password not found.\"}", HttpStatus.INTERNAL_SERVER_ERROR);
         }
-        System.out.println(headers.entrySet());
-        return new ResponseEntity<String>("{\"token\":\"snEj3vGHD7Qa4PKvN6dkBz9fZYjrDqaa!@!\"}", HttpStatus.OK);
+
 
     }
 

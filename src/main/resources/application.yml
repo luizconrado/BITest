@@ -26,7 +26,7 @@ spring:
       connection-test-query: SELECT 1
       maximum-pool-size: 8
 #    data: data.sql
-    initialization-mode: always
+#    initialization-mode: always
   output:
     ansi:
       enabled: always
