@@ -133,3 +133,6 @@ buildNumber.properties
 #src/main/java/com/example/restapi/bitest/repository/
 #src/main/resources/static/
 #src/main/resources/templates/
+#src/main/java/com/example/restapi/bitest/view/
+#src/main/resources/static/
+#src/main/resources/templates/
