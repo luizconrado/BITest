@@ -1,0 +1,36 @@
+spring:
+  application.name: springbitest
+  jpa:
+    database: POSTGRESQL
+    show-sql: true
+    generate-ddl: true
+    hibernate:
+#      ddl-auto: create-drop
+      ddl-auto: validate
+      naming:
+        physical-strategy: org.springframework.boot.orm.jpa.hibernate.SpringPhysicalNamingStrategy
+  datasource:
+    platform: postgres
+    url: jdbc:postgresql://127.0.0.1:5433/JobInterview
+#    url: jdbc:postgresql://192.168.178.39:5432/postgres
+#    url: jdbc:postgresql://192.168.252.3:5432/postgres
+    username: postgres
+    password: docker
+    hikari:
+      schema: public
+      auto-commit: true
+      jdbc-url: jdbc:postgresql://127.0.0.1:5433/JobInterview
+#      jdbc-url: jdbc:postgresql://192.168.178.39:5432/postgres
+#      jdbc-url: jdbc:postgresql://192.168.252.3:5432/postgres
+#      jdbc-url: jdbc:postgresql://192.168.56.8:5432/postgres
+      connection-test-query: SELECT 1
+      maximum-pool-size: 8
+#    data: data.sql
+    initialization-mode: always
+  output:
+    ansi:
+      enabled: always
+  main:
+    banner-mode: console
+server:
+  port: 8083
