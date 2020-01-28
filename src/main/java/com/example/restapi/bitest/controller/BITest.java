@@ -33,9 +33,6 @@ public class BITest {
     }
 
 
-
-
-
     @RequestMapping(method = RequestMethod.GET, path = "/merchantaddress", produces = "application/json")
     public ResponseEntity<String> merchantAddress(@RequestHeader HttpHeaders headers) {
 
@@ -66,9 +63,6 @@ public class BITest {
     }
 
 
-
-
-
     @RequestMapping(method = RequestMethod.GET, path = "/merchantcontract", produces = "application/json")
     public ResponseEntity<String> merchantContract(@RequestHeader HttpHeaders headers) {
 
@@ -97,8 +91,6 @@ public class BITest {
 
         return ResponseEntity.ok(values);
     }
-
-
 
 
     @RequestMapping(method = RequestMethod.POST, path = "/token", produces = "application/json")
