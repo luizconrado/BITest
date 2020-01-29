@@ -47,7 +47,7 @@ public class BITest {
 
 //--------------------------------------- TOKEN ENDPOINT --------------------------------------------------
 
-    @RequestMapping(method = RequestMethod.POST, path = "/token", produces = "application/json")
+    @RequestMapping(method = RequestMethod.POST, path = "/businessintelligence/token", produces = "application/json")
     public ResponseEntity<String> getCredentials(@RequestHeader HttpHeaders headers) {
         String username = null;
         String password = null;
@@ -55,14 +55,16 @@ public class BITest {
             username = headers.get("username").get(0);
             password = headers.get("password").get(0);
 
-            if ((!username.equals("bitest@finleap.com") || username == null) || (!password.equals("AkljdasHJSDkj86572Fga") || password == null)) {
+            if (username.equals("bitest@finleap.com") && password.equals("AkljdasHJSDkj86572Fga")) {
                 System.out.println(headers.entrySet());
                 return new ResponseEntity<String>("{\"token\":\"snEj3vGHD7Qa4PKvN6dkBz9fZYjrDqaa!@!\"}", HttpStatus.OK);
             } else {
+                System.out.println(headers.entrySet());
                 return new ResponseEntity<String>("{\"error\":\"wrong username or password.\"}", HttpStatus.UNAUTHORIZED);
             }
 
         } catch (NullPointerException e) {
+            System.out.println(headers.entrySet());
             return new ResponseEntity<String>("{\"error\":\"username or password not found.\"}", HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
@@ -72,7 +74,7 @@ public class BITest {
 
 
     //--------------------------------------- Merchant Address --------------------------------------------------
-    @RequestMapping(method = RequestMethod.GET, path = "/merchantaddresses", produces = "application/json")
+    @RequestMapping(method = RequestMethod.GET, path = "/businessintelligence/merchantaddresses", produces = "application/json")
     public ResponseEntity<String> getMerchantAddresses(@RequestHeader HttpHeaders headers) {
 
         String token = null;
@@ -103,7 +105,7 @@ public class BITest {
 
 
     //--------------------------------------- Merchant Contract --------------------------------------------------
-    @RequestMapping(method = RequestMethod.GET, path = "/merchantcontracts", produces = "application/json")
+    @RequestMapping(method = RequestMethod.GET, path = "/businessintelligence/merchantcontracts", produces = "application/json")
     public ResponseEntity<String> getMerchantContracts(@RequestHeader HttpHeaders headers) {
 
         String token = null;
@@ -134,7 +136,7 @@ public class BITest {
 
 
     //--------------------------------------- Orders --------------------------------------------------
-    @RequestMapping(method = RequestMethod.GET, path = "/orders", produces = "application/json")
+    @RequestMapping(method = RequestMethod.GET, path = "/businessintelligence/orders", produces = "application/json")
     public ResponseEntity<String> getOrders(@RequestHeader HttpHeaders headers) {
 
         String token = null;
@@ -165,7 +167,7 @@ public class BITest {
 
 
     //--------------------------------------- Traffic --------------------------------------------------
-    @RequestMapping(method = RequestMethod.GET, path = "/traffic", produces = "application/json")
+    @RequestMapping(method = RequestMethod.GET, path = "/businessintelligence/traffic", produces = "application/json")
     public ResponseEntity<String> getTraffic(@RequestHeader HttpHeaders headers) {
 
         String token = null;
